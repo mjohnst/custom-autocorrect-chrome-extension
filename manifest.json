@@ -2,15 +2,17 @@
   "manifest_version": 2,
 
   "name": "Customizable input autocomplete",
-  "description": "This chrome extension allows you to control 'autocomplete=\"on/off\"' attributes on form inputs",
+  "description": "This chrome extension allows you to add 'autocomplete=\"on\"' attributes on text inputs",
   "version": "0.1",
 
-  "permissions": [
-    "https://secure.flickr.com/"
-  ],
+  "icons": { 
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png" 
+  },
 
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icon128.png",
     "default_popup": "popup.html"
   },
 

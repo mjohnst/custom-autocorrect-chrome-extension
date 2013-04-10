@@ -17,3 +17,10 @@ var add_autocomplete_on = function(input) {
   else
     return false
 }
+
+loaded_url = document.URL;
+loaded_domain = document.domain;
+
+if(localStorage[loaded_url]) {
+  
+}

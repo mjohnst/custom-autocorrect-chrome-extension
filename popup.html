@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customizable Input Autocomplete Extension</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      body {
+        min-width: 350px;
+        overflow-x: hidden;
+      }
+      input {
+        width: 100%;
+      }
+      ul {
+        list-style: none;
+      }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <h4>Text Inputs Modified</h4>
+    <ul id="input-list">
+      <li id="empty-list">No inputs for any page (add one!)</li>
+    </ul>
+    <form action="#">
+      <label for="url">
+        <p>URL:</p>
+        <input name="url" id="url" type="url" placeholder="http://url.com" required="required" />
+      </label>
+      <label for="selector">
+        <p>CSS Selector:</p>
+        <input id="selector" name="selector" type="text" placeholder="css selector" required="required" />
+      </label>
+      <br />
+      <br />
+      <button id="add">Add</button>
+    </form>
+  </body>
+</html>

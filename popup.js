@@ -5,7 +5,7 @@
  *          April 10, 2013
  */
 
-generatePopup = {
+var generatePopup = {
 
   /** 
    * Populates list with user's current monitored lists
@@ -13,18 +13,43 @@ generatePopup = {
    * @private
    */
   populate_list_: function() {
-    var input_list = document.getElementById("input-list");
-
-    for(var url in localStorage) {
-        if (input_list.firstElementChild.id === "empty-list")
-          input_list.removeChild(input_list.firstElementChild);
-
-        var new_li = document.createElement("li");
-
-        input_list.appendChild(new_li);
+    // exit if no localStorage
+    if (!localStorage.length) { 
+          return false;
     }
+
+    // get clean list for writing
+    var input_list = document.getElementById("input-list");
+    input_list.innerHTML = "";
+
+
+    // write all urls with list of tracked selectors
+    for(var url in localStorage) {
+
+        // create label for url
+        var new_ul_label = document.createElement("li");
+        new_ul_label.innerHTML = url;
+        input_list.appendChild(new_ul_label);
+
+        // add url unordered list
+        var url_ul = document.createElement("ul");
+        input_list.appendChild(url_ul);
+
+        // add selectors to url unordered list
+        for(var selector in JSON.parse(localStorage[url])) {
+          var new_li = document.createElement("li");
+          new_li.innerHTML = JSON.parse(localStorage[url])[selector];
+          url_ul.appendChild(new_li);
+        }
+    }
+    return true;
   },
 
+  /**
+   * Listen to form for new selectors to be added
+   *
+   * @private
+   */
   observe_form_: function() {
     var button = document.getElementById("add");
 
@@ -32,7 +57,16 @@ generatePopup = {
       var url = document.getElementById("url").value;
       var selector = document.getElementById("selector").value;
 
-      this.populate_list_() // repopulate list with new element
+      if (!localStorage[url]) {
+        localStorage[url] = JSON.stringify([selector]);
+      }
+      else {
+        selectors = JSON.parse(localStorage[url]);
+        selectors.push(selector);
+        localStorage[url] = JSON.stringify(selectors);
+      }
+
+      this.populate_list_() // repopulate ligst with new element (make more efficient)
     });
   },
 

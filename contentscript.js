@@ -1,4 +1,11 @@
 /**
+ * Creator: Michael Johnston
+ *          mjohnst.com
+ *
+ *          April 10, 2013
+ */
+
+/**
  * Add autocomplete="on" to input
  */
 
